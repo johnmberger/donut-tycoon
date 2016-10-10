@@ -7,8 +7,8 @@
     <div class="">
       <ul>
         <li>{{employee.email}}</li>
-        <li>{{employee.shop.name}}</li>
-        <li>{{employee.donut.name}}</li>
+        <li><a href="/shops/{{employee.shop_id}}">{{employee.shop.name}}</a></li>
+        <li><a href="/donuts/{{employee.favorite_donut}}">{{employee.donut.name}}</a></li>
         <li><a href="/employees/{{employee.id}}/edit">Edit</a></li>
         <li><a href="/employees/{{employee.id}}/delete">Delete</a></li>
       </ul>
