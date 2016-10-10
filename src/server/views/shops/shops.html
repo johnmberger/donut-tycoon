@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <h1>Shops</h1>
+    <div class="">
+      <ul>
+        {% for shop in shops %}
+        <li><a href="/shops/{{shop.id}}">{{shop.name}}</a>, {{shop.city}} || <a href="/shops/{{shop.id}}/edit">Edit</a> || <a href="/shops/{{shop.id}}/delete">Delete</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

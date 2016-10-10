@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <h1>Donuts</h1>
+    <div class="">
+      <ul>
+        {% for donut in donuts %}
+        <li><a href="/donuts/{{donut.id}}">{{donut.name}}</a>,  {{donut.topping}}, ${{donut.price}}.00 || <a href="/donuts/{{donut.id}}/edit">Edit</a> || <a href="/donuts/{{donut.id}}/delete">Delete</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <h1>{{employee.first_name}} {{employee.last_name}}</h1>
+    <div class="">
+      <ul>
+        <li>{{employee.email}}</li>
+        <li>{{employee.shop.name}}</li>
+        <li>{{employee.donut.name}}</li>
+        <li><a href="/employees/{{employee.id}}/edit">Edit</a></li>
+        <li><a href="/employees/{{employee.id}}/delete">Delete</a></li>
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

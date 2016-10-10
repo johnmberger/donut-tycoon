@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <h1>Employees</h1>
+    <div class="">
+      <ul>
+        {% for employee in employees %}
+        <li><a href="/employees/{{employee.id}}">{{employee.first_name}} {{employee.last_name}}</a> || <a href="/employees/{{employee.id}}/edit">Edit</a> || <a href="/employees/{{employee.id}}/delete">Delete</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}
