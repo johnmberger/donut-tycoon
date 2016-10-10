@@ -3,8 +3,16 @@
 {% block content %}
 
   <div class="container">
+    {% if message %}
+    <div class="alert alert-success" role="alert" id="success-alert">
+      <strong>Success!</strong> {{message}}
+    </div>
+    {% endif %}
     <h1>Donuts</h1>
     <div class="">
+      <a href="/donuts/new">New Donut</a>
+      <br>
+      <br>
       <ul>
         {% for donut in donuts %}
         <li><a href="/donuts/{{donut.id}}">{{donut.name}}</a>,  {{donut.topping}}, ${{donut.price}}.00 || <a href="/donuts/{{donut.id}}/edit">Edit</a> || <a href="/donuts/{{donut.id}}/delete">Delete</a></li>

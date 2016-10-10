@@ -7,11 +7,13 @@
     <div class="col-md-12">
       <form method="post">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" placeholder="Name" class="form-control">
+        <input type="text" name="name" id="name" placeholder="Name" class="form-control" required>
         <label for="topping">Toppings</label>
-        <input type="text" name="topping" id="topping" placeholder="Toppings" class="form-control">
+        <input type="text" name="topping" id="topping" placeholder="Toppings" class="form-control" required>
         <label for="price">Price</label>
-        <input type="number" name="price" class="form-control">
+        <input type="number" name="price" class="form-control" placeholder="Whole Numbers Only" required>
+        <br>
+        <input type="submit" value="Create Donut!" class="btn btn-success">
       </form>
     </div>
   </div>
