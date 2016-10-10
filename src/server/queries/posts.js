@@ -21,4 +21,29 @@ function editDonut(data) {
   .returning('*');
 }
 
-module.exports = { newDonut, editDonut };
+function newEmployee(data) {
+  return knex('employees')
+  .returning('*')
+  .insert({
+    first_name: data.first_name,
+    last_name: data.last_name,
+    email: data.email,
+    favorite_donut: parseInt(data.favorite_donut),
+    shop_id: parseInt(data.shop_id)
+  });
+}
+
+function editEmployee(data) {
+  return knex('employees')
+  .where('id', data.id)
+  .update({
+    first_name: data.first_name,
+    last_name: data.last_name,
+    email: data.email,
+    favorite_donut: parseInt(data.favorite_donut),
+    shop_id: parseInt(data.shop_id)
+  })
+  .returning('*');
+}
+
+module.exports = { newDonut, editDonut, newEmployee, editEmployee };

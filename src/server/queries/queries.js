@@ -8,6 +8,11 @@ function getOne(table, id) {
   return knex(table).where('id', id);
 }
 
+function justOneShop(id) {
+  return knex('shops_donuts').where('donut_id', id)
+  .join('shops', 'shops.id', 'shops_donuts.shop_id');
+}
+
 function getOneShop(id) {
   return knex('shops').where('shops.id', id)
   .then((shop) => {
@@ -49,4 +54,4 @@ function getOneEmployee(id) {
   });
 }
 
-module.exports = { getAll, getOne, getOneShop, getOneEmployee };
+module.exports = { getAll, getOne, getOneShop, justOneShop, getOneEmployee };

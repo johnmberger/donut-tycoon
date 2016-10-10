@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getAll, getOne, getOneEmployee } = require('../queries/queries');
+const { newEmployee, editEmployee } = require('../queries/posts');
 
 router.get('/', function (req, res, next) {
   getAll('employees')
@@ -16,6 +17,32 @@ router.get('/:id', function (req, res, next) {
   const employeeID = parseInt(req.params.id);
   getOneEmployee(employeeID)
   .then(employee => res.render('employees/employee', {employee}));
+});
+
+router.get('/:id/edit', function (req, res, next) {
+  const employeeID = parseInt(req.params.id);
+  Promise.all([getOneEmployee(employeeID), getAll('donuts'), getAll('shops')])
+  .then(results => res.render('employees/edit', {
+    employee: results[0],
+    donuts: results[1],
+    shops: results[2]
+  }));
+});
+
+router.post('/new', function (req, res, next) {
+  newEmployee(req.body)
+  .then(result => {
+    getAll('employees')
+    .then(employees => res.render('employees/employees', {employees, message: `${result[0].first_name} ${result[0].last_name} has been added!`}));
+  });
+});
+
+router.post('/:id/edit', function (req, res, next) {
+  editEmployee(req.body)
+  .then(result => {
+    getAll('employees')
+    .then(employees => res.render('employees/employees', {employees, message: `${result[0].first_name} ${result[0].last_name} has been updated!`}));
+  });
 });
 
 module.exports = router;

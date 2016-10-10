@@ -3,7 +3,15 @@
 {% block content %}
 
   <div class="container">
+    {% if message %}
+    <div class="alert alert-success" role="alert" id="success-alert">
+      <strong>Success!</strong> {{message}}
+    </div>
+    {% endif %}
     <h1>Employees</h1>
+    <a href="/employees/new">New Employee</a>
+    <br>
+    <br>
     <div class="">
       <ul>
         {% for employee in employees %}

@@ -10,6 +10,8 @@
         <input type="text" name="first_name" id="first_name" placeholder="First Name" class="form-control">
         <label for="last_name">Last Name</label>
         <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="form-control">
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" placeholder="Email Address" class="form-control" required>
         <label for="favorite_donut">Favorite Donut</label>
         <select class="form-control" name="favorite_donut">
           <option disabled selected value> Select a Donut </option>
@@ -24,6 +26,7 @@
           <option value="{{shop.id}}">{{shop.name}}</option>
           {% endfor %}
         </select>
+        <input type="submit" value="Create Employee" class="btn btn-success">
       </form>
     </div>
   </div>

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAll, getOne, getOneShop } = require('../queries/queries');
+const { getAll, getOne, getOneShop, justOneShop  } = require('../queries/queries');
 const { newDonut, editDonut } = require('../queries/posts');
 
 router.get('/', function (req, res, next) {
@@ -14,8 +14,8 @@ router.get('/new', function (req, res, next) {
 
 router.get('/:id', function (req, res, next) {
   const donutID = parseInt(req.params.id);
-  getOne('donuts', donutID)
-  .then(donut => res.render('donuts/donut', {donut: donut[0]}));
+  Promise.all([getOne('donuts', donutID), justOneShop(donutID)])
+  .then(results => res.render('donuts/donut', {donut: results[0][0], shops: results[1]}));
 });
 
 router.get('/:id/edit', function (req, res, next) {

@@ -8,6 +8,11 @@
       <ul>
         <li>{{donut.name}},  {{donut.topping}}, ${{donut.price}}.00 || <a href="/donuts/{{donut.id}}/edit">Edit</a> || <a href="/donuts/{{donut.id}}/delete">Delete</a></li>
       </ul>
+      <ul>
+        {% for shop in shops %}
+        <li><a href="/shops/{{shop.id}}">{{shop.name}}</a></li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 

@@ -1,0 +1,43 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <h1>Edit: {{employee.first_name}} {{employee.last_name}}</h1>
+    <div class="col-md-12">
+      <form method="post">
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name" placeholder="First Name" class="form-control" value="{{employee.first_name}}" required>
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="form-control" value="{{employee.last_name}}" required>
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" placeholder="Email Address" class="form-control" value="{{employee.email}}" required>
+        <label for="favorite_donut">Favorite Donut</label>
+        <select class="form-control" name="favorite_donut" required>
+          <option disabled selected value> Select a Donut </option>
+          {% for donut in donuts %}
+          {% if (employee.favorite_donut == donut.id) %}
+          <option value="{{donut.id}}" selected>{{donut.name}}</option>
+          {% else %}
+          <option value="{{donut.id}}">{{donut.name}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+        <label for="shop_id">Shop</label>
+        <select class="form-control" name="shop_id" required>
+          <option disabled selected value> Select a Shop </option>
+          {% for shop in shops %}
+          {% if (employee.shop_id == shop.id) %}
+          <option value="{{shop.id}}" selected>{{shop.name}}</option>
+          {% else %}
+          <option value="{{shop.id}}">{{shop.name}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+        <input type="number" name="id" value="{{employee.id}}" hidden>
+        <input type="submit" value="Save Changes" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
