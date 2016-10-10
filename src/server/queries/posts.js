@@ -10,4 +10,15 @@ function newDonut(data) {
   });
 }
 
-module.exports = { newDonut };
+function editDonut(data) {
+  return knex('donuts')
+  .where('id', data.id)
+  .update({
+    name: data.name,
+    topping: data.topping,
+    price: data.price
+  })
+  .returning('*');
+}
+
+module.exports = { newDonut, editDonut };

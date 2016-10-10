@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <h1>Edit Donut : {{donut.name}}</h1>
+    <div class="col-md-12">
+      <form method="post">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="{{donut.name}}" required>
+        <label for="topping">Toppings</label>
+        <input type="text" name="topping" id="topping" placeholder="Toppings" class="form-control" value="{{donut.topping}}" required>
+        <label for="price">Price</label>
+        <input type="number" name="price" class="form-control" placeholder="Whole Numbers Only" value="{{donut.price}}" required>
+        <input type="number" name="id" value="{{donut.id}}" hidden>
+        <br>
+        <input type="submit" value="Save Changes" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
