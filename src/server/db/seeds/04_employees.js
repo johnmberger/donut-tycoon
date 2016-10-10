@@ -46,7 +46,7 @@ exports.seed = function(knex, Promise) {
           email: 'ho@donuts.co',
           favorite_donut: 6,
           shop_id: 5
-        }),
+        })
       ]);
     });
 };

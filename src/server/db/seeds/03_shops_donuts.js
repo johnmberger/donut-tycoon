@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
         knex('shops_donuts').insert({shop_id: 3, donut_id: 7}),
         knex('shops_donuts').insert({shop_id: 4, donut_id: 2}),
         knex('shops_donuts').insert({shop_id: 5, donut_id: 2}),
-        knex('shops_donuts').insert({shop_id: 5, donut_id: 2}),
+        knex('shops_donuts').insert({shop_id: 5, donut_id: 5}),
         knex('shops_donuts').insert({shop_id: 5, donut_id: 1})
       ]);
     });
