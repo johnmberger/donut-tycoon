@@ -7,6 +7,11 @@ router.get('/', function (req, res, next) {
   .then((employees) => res.render('employees/employees', {employees}));
 });
 
+router.get('/new', function (req, res, next) {
+  Promise.all([getAll('donuts'), getAll('shops')])
+  .then(data => res.render('employees/new', {donuts: data[0], shops: data[1]}));
+});
+
 router.get('/:id', function (req, res, next) {
   const employeeID = parseInt(req.params.id);
   getOneEmployee(employeeID)

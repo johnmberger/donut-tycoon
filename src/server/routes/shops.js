@@ -7,6 +7,11 @@ router.get('/', function (req, res, next) {
   .then((shops) => res.render('shops/shops', {shops}));
 });
 
+router.get('/new', function (req, res, next) {
+  getAll('donuts')
+  .then(donuts => res.render('shops/new', {donuts}));
+});
+
 router.get('/:id', function (req, res, next) {
   const shopID = parseInt(req.params.id);
   getOneShop(shopID)

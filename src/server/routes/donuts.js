@@ -7,6 +7,10 @@ router.get('/', function (req, res, next) {
   .then(donuts => res.render('donuts/donuts', {donuts}));
 });
 
+router.get('/new', function (req, res, next) {
+  res.render('donuts/new');
+});
+
 router.get('/:id', function (req, res, next) {
   const donutID = parseInt(req.params.id);
   getOne('donuts', donutID)
