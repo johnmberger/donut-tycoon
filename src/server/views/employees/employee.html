@@ -7,16 +7,16 @@
       <h1>{{employee.first_name}} {{employee.last_name}}</h1>
       <a href="/employees/{{employee.id}}/edit">Edit</a>
       <h3>Email:</h3>
-      <p>
+      <p class="item-text">
         <a href="mailto:{{employee.email}}">{{employee.email}}</a>
       </p>
       <h3>Location:</h3>
-      <p>
+      <p class="list-item">
         <a href="/shops/{{employee.shop_id}}">{{employee.shop.name}}</a>
       </p>
       <h3>Favorite Donut:</h3>
       {% if employee.favorite_donut %}
-      <p>
+      <p class="list-item">
         <a href="/donuts/{{employee.favorite_donut}}">{{employee.donut.name}}</a>
       </p>
       {% else %}
