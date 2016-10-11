@@ -20,6 +20,11 @@ ul {
   right: 10px;
   top: 33%;
 }
+.individual-delete-button {
+  color: brown;
+  background: lightgrey;
+  border: none;
+}
 .edit {
   position: absolute;
   right: 40px;

@@ -100,6 +100,39 @@ function newShop(data) {
   .catch(err => err);
 }
 
+function editShop(data) {
+  return knex('shops_donuts')
+  .del('*')
+  .where('shop_id', data.id)
+  .then(() => {
+    return knex('shops')
+    .where('id', data.id)
+    .update({
+      name: data.name,
+      city: data.city
+    });
+  })
+  .then(() => {
+    if (data.donut_id.length > 1) {
+      data.donut_id.forEach((id) => {
+        knex('shops_donuts')
+        .returning('*')
+        .insert({
+          donut_id: parseInt(id),
+          shop_id: parseInt(data.id)
+        }).then((data) => data);
+      });
+    } else {
+      return knex('shops_donuts')
+      .returning('*')
+      .insert({
+        donut_id: parseInt(data.donut_id),
+        shop_id: parseInt(data.id)
+      }).then((data) => data);
+    }
+  });
+}
+
 function deleteShop(id) {
   return knex('employees')
   .del('*')
@@ -117,4 +150,4 @@ function deleteShop(id) {
   });
 }
 
-module.exports = { newDonut, editDonut, deleteDonut, newEmployee, editEmployee, deleteEmployee, newShop, deleteShop };
+module.exports = { newDonut, editDonut, deleteDonut, newEmployee, editEmployee, deleteEmployee, newShop, editShop, deleteShop };

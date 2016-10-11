@@ -3,16 +3,28 @@
 {% block content %}
 
   <div class="container">
-    <h1>{{donut.name}}</h1>
-    <div class="">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>{{donut.name}}<small> - ${{donut.price}}.00</small></h1>
+      <a href="/donuts/{{donut.id}}/edit">Edit</a>
+      <h3>Toppings</h3>
+      <p>
+        {{donut.topping}}
+      </p>
+      <h3>Found at these Locations:</h3>
       <ul>
-        <li>{{donut.name}},  {{donut.topping}}, ${{donut.price}}.00 || <a href="/donuts/{{donut.id}}/edit">Edit</a> || <a href="/donuts/{{donut.id}}/delete">Delete</a></li>
-      </ul>
-      <ul>
+        {% if (shops | length) %}
         {% for shop in shops %}
-        <li><a href="/shops/{{shop.id}}">{{shop.name}}</a></li>
+        <li class="list-item"><a class="item-text" href="/shops/{{shop.id}}">{{shop.name}}</a></li>
         {% endfor %}
+        {% else %}
+        <li>Looks like we're all out!</li>
+        {% endif %}
       </ul>
+      <br>
+      <br>
+      <form action="/donuts/{{donut.id}}/delete" method="post">
+        <input type="submit" value="Delete Donut" class="individual-delete-button">
+      </form>
     </div>
   </div>
 

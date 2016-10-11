@@ -4,27 +4,24 @@
 
   <div class="container">
     <h1>Edit Shop: {{shop.name}}</h1>
-    {{sortedDonuts | dump}}
     <div class="col-md-12">
       <form method="post">
         <label for="first_name">Name</label>
         <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="{{shop.name}}" required>
         <label for="last_name">City</label>
         <input type="text" name="city" id="city" placeholder="City" class="form-control" value="{{shop.city}}" required>
-        <label for="favorite_donut">Donuts (can select multiple)</label>
-        <select class="form-control" name="donut_id" multiple size="{{donuts | length}}" required>
-          {% for donut in donuts %}
-          {% for availableDonut in shop.donuts %}
-          {% if (availableDonut.id == donut.id) %}
-          <option value="{{donut.id}}" selected>{{donut.name}}</option>
-          {% endif %}
-          {% if (availableDonut.id != donut.id) %}
-          <option value="{{donut.id}}">{{donut.name}}</option>
-          {% endif %}
+        <label for="favorite_donut">Available Donuts (can select multiple)</label>
+        <select class="form-control" name="donut_id" multiple size="{{(selections.available | length) + (selections.remaining | length)}}" required>
+          {% for availableDonut in selections.available %}
+          <option value="{{availableDonut.id}}" selected>{{availableDonut.name}}</option>
           {% endfor %}
+          {% for otherDonut in selections.remaining %}
+          <option value="{{otherDonut.id}}">{{otherDonut.name}}</option>
           {% endfor %}
         </select>
-        <input type="submit" value="Create Shop" class="btn btn-success">
+        <input type="hidden" name="id" value="{{shop.id}}">
+        <br>
+        <input type="submit" value="Save Changes" class="btn btn-success">
       </form>
     </div>
   </div>

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getAll, getOneShopData } = require('../queries/queries');
-const { newShop, deleteShop } = require('../queries/posts');
+const { newShop, editShop, deleteShop } = require('../queries/posts');
 
 router.get('/', function (req, res, next) {
   getAll('shops')
@@ -21,9 +21,25 @@ router.get('/:id', function (req, res, next) {
 
 router.get('/:id/edit', function (req, res, next) {
   const shopID = parseInt(req.params.id);
+  console.log('edit 1');
   Promise.all([getOneShopData(shopID), getAll('donuts')])
   .then(results => {
-    res.render('shops/edit', {shop: results[0], donuts: results[1]});
+    var availableDonuts = results[0].donuts;
+    var allDonuts = results[1];
+    var selections = {
+      available: availableDonuts,
+      remaining: allDonuts
+    };
+    console.log('before for loops');
+    for (var i = allDonuts.length - 1; i >= 0; i--) {
+      for (var j = availableDonuts.length - 1; j >= 0; j--) {
+        if (availableDonuts[j].id === allDonuts[i].id) {
+          selections.remaining.splice(i, 1);
+        }
+      }
+    }
+    console.log('after the loops');
+    res.render('shops/edit', {shop: results[0], donuts: results[1], selections});
   });
 });
 
@@ -32,6 +48,14 @@ router.post('/new', function (req, res, next) {
   .then(result => {
     getAll('shops')
     .then(shops => res.render('shops/shops', {shops, message: `${result.name} has been added.`}));
+  });
+});
+
+router.post('/:id/edit', function (req, res, next) {
+  editShop(req.body)
+  .then(result => {
+    getAll('shops')
+    .then(shops => res.render('shops/shops', {shops, message: `Shop has been updated.`}));
   });
 });
 

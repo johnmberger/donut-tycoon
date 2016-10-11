@@ -7,20 +7,20 @@
     <div class="col-md-12">
       <form method="post">
         <label for="first_name">First Name</label>
-        <input type="text" name="first_name" id="first_name" placeholder="First Name" class="form-control">
+        <input type="text" name="first_name" id="first_name" placeholder="First Name" class="form-control" required>
         <label for="last_name">Last Name</label>
-        <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="form-control">
+        <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="form-control" required>
         <label for="email">Email Address</label>
         <input type="email" name="email" id="email" placeholder="Email Address" class="form-control" required>
         <label for="favorite_donut">Favorite Donut</label>
-        <select class="form-control" name="favorite_donut">
+        <select class="form-control" name="favorite_donut" required>
           <option disabled selected value> Select a Donut </option>
           {% for donut in donuts %}
           <option value="{{donut.id}}">{{donut.name}}</option>
           {% endfor %}
         </select>
         <label for="shop_id">Shop</label>
-        <select class="form-control" name="shop_id">
+        <select class="form-control" name="shop_id" required>
           <option disabled selected value> Select a Shop </option>
           {% for shop in shops %}
           <option value="{{shop.id}}">{{shop.name}}</option>
