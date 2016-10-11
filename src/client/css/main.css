@@ -1,6 +1,7 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: lightgrey;
+  padding-bottom: 40px;
 }
 ul {
  list-style: none;
@@ -22,7 +23,7 @@ ul {
 .edit {
   position: absolute;
   right: 40px;
-  top: 36%;
+  top: 37.5%;
 }
 .item-text {
   color: grey;

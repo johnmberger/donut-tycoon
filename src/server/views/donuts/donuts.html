@@ -8,17 +8,18 @@
       <strong>Success!</strong> {{message}}
     </div>
     {% endif %}
-    <h1>Donuts</h1>
-    <div class="">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Donuts</h1>
       <a href="/donuts/new">New Donut</a>
       <br>
       <br>
       <ul>
         {% for donut in donuts %}
-        <li>
-          <a href="/donuts/{{donut.id}}">{{donut.name}}</a>,  {{donut.topping}}, ${{donut.price}}.00 || <a href="/donuts/{{donut.id}}/edit">Edit</a> ||
+        <li class="list-item">
+          <a href="/donuts/{{donut.id}}" class="item-text">{{donut.name}}</a>
+          <a href="/donuts/{{donut.id}}/edit" class="edit">Edit</a>
           <form action="/donuts/{{donut.id}}/delete" method="post">
-            <input type="submit" value="Delete Donut">
+            <input type="submit" value="✖" class="delete-button">
           </form>
         </li>
         {% endfor %}

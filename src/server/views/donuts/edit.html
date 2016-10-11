@@ -3,18 +3,28 @@
 {% block content %}
 
   <div class="container">
-    <h1>Edit Donut : {{donut.name}}</h1>
-    <div class="col-md-12">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Edit Donut : {{donut.name}}</h1>
       <form method="post">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="{{donut.name}}" required>
-        <label for="topping">Toppings</label>
-        <input type="text" name="topping" id="topping" placeholder="Toppings" class="form-control" value="{{donut.topping}}" required>
-        <label for="price">Price</label>
-        <input type="number" name="price" class="form-control" placeholder="Whole Numbers Only" value="{{donut.price}}" required>
-        <input type="number" name="id" value="{{donut.id}}" hidden>
-        <br>
-        <input type="submit" value="Save Changes" class="btn btn-success">
+        <div class="col-md-9">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="{{donut.name}}" required>
+        </div>
+        <div class="col-md-3">
+          <label for="price">Price</label>
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <input type="number" name="price" class="form-control" placeholder="Amount" value="{{donut.price}}" required>
+            <div class="input-group-addon">.00</div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="topping">Toppings</label>
+          <textarea type="text" name="topping" id="topping" placeholder="Toppings" class="form-control" rows="3" required>{{donut.topping}}</textarea>
+          <input type="number" name="id" value="{{donut.id}}" hidden>
+          <br>
+          <input type="submit" value="Save Changes" class="btn btn-success">
+        </div>
       </form>
     </div>
   </div>
