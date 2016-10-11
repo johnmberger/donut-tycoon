@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getAll, getOne, getOneEmployee } = require('../queries/queries');
-const { newEmployee, editEmployee } = require('../queries/posts');
+const { newEmployee, editEmployee, deleteEmployee } = require('../queries/posts');
 
 router.get('/', function (req, res, next) {
   getAll('employees')
@@ -33,7 +33,7 @@ router.post('/new', function (req, res, next) {
   newEmployee(req.body)
   .then(result => {
     getAll('employees')
-    .then(employees => res.render('employees/employees', {employees, message: `${result[0].first_name} ${result[0].last_name} has been added!`}));
+    .then(employees => res.render('employees/employees', {employees, message: `${result[0].first_name} ${result[0].last_name} has been added.`}));
   });
 });
 
@@ -41,7 +41,15 @@ router.post('/:id/edit', function (req, res, next) {
   editEmployee(req.body)
   .then(result => {
     getAll('employees')
-    .then(employees => res.render('employees/employees', {employees, message: `${result[0].first_name} ${result[0].last_name} has been updated!`}));
+    .then(employees => res.render('employees/employees', {employees, message: `${result[0].first_name} ${result[0].last_name} has been updated.`}));
+  });
+});
+
+router.post('/:id/delete', function (req, res, next) {
+  deleteEmployee(parseInt(req.params.id))
+  .then(result => {
+    getAll('employees')
+    .then((employees) => res.render('employees/employees', {employees, message: `${result[0].first_name} ${result[0].last_name} has been deleted.`}));
   });
 });
 

@@ -1,7 +1,37 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: lightgrey;
 }
-
+ul {
+ list-style: none;
+ padding-left: 0;
+}
+.list-item {
+  background: white;
+  padding: 20px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.delete-button {
+  background: white;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 33%;
+}
+.edit {
+  position: absolute;
+  right: 40px;
+  top: 36%;
+}
+.item-text {
+  color: grey;
+  font-size: 1.5rem;
+}
+.sub-text {
+  color: grey;
+  margin-left: 10px;
+}
 a {
   color: #00B7FF;
 }

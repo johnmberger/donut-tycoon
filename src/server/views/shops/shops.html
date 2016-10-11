@@ -3,11 +3,25 @@
 {% block content %}
 
   <div class="container">
-    <h1>Shops</h1>
-    <div class="">
+    {% if message %}
+    <div class="alert alert-success" role="alert" id="success-alert">
+      <strong>Success!</strong> {{message}}
+    </div>
+    {% endif %}
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Shops</h1>
+      <a href="/shops/new">New Shop</a>
+      <br>
+      <br>
       <ul>
         {% for shop in shops %}
-        <li><a href="/shops/{{shop.id}}">{{shop.name}}</a>, {{shop.city}} || <a href="/shops/{{shop.id}}/edit">Edit</a> || <a href="/shops/{{shop.id}}/delete">Delete</a></li>
+        <li class="list-item">
+          <a href="/shops/{{shop.id}}" class="item-text">{{shop.name}}</a><span class="sub-text">- {{shop.city}}</span>
+          <a href="/shops/{{shop.id}}/edit" class="edit">Edit</a>
+          <form action="/shops/{{shop.id}}/delete" method="post">
+            <input type="submit" value="✖" class="delete-button">
+          </form>
+        </li>
         {% endfor %}
       </ul>
     </div>

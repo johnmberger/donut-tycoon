@@ -8,14 +8,19 @@
       <strong>Success!</strong> {{message}}
     </div>
     {% endif %}
-    <h1>Employees</h1>
-    <a href="/employees/new">New Employee</a>
-    <br>
-    <br>
-    <div class="">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Employees</h1>
+      <a href="/employees/new">New Employee</a>
+      <br>
+      <br>
       <ul>
         {% for employee in employees %}
-        <li><a href="/employees/{{employee.id}}">{{employee.first_name}} {{employee.last_name}}</a> || <a href="/employees/{{employee.id}}/edit">Edit</a> || <a href="/employees/{{employee.id}}/delete">Delete</a></li>
+        <li class="list-item">
+          <a class="item-text" href="/employees/{{employee.id}}">{{employee.first_name}} {{employee.last_name}}</a><a href="/employees/{{employee.id}}/edit" class="edit">Edit</a>
+          <form action="/employees/{{employee.id}}/delete" method="post">
+            <input type="submit" value="✖" class="delete-button">
+          </form>
+        </li>
         {% endfor %}
       </ul>
     </div>

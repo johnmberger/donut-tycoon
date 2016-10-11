@@ -5,18 +5,30 @@
   <div class="container">
     <h1>{{shop.name}}</h1>
     <h2>{{shop.city}}</h2>
+    <a href="/shops/{{shop.id}}/edit" class="btn btn-sm btn-info">Edit Shop</a>
+    <form action="/shops/{{shop.id}}/delete" method="post">
+      <input type="submit" value="Delete Shop" class="btn btn-sm btn-danger">
+    </form>
     <div class="">
       <h3>Donuts</h3>
       <ul>
+        {% if (shop.donuts | length ) %}
         {% for donut in shop.donuts %}
         <li><a href="/donuts/{{donut.id}}"> {{donut.name}}</a>, {{donut.topping}}, {{donut.price}}</li>
         {% endfor %}
+        {% else %}
+        <li>No donuts left!</li>
+        {% endif %}
       </ul>
       <h3>Employees</h3>
       <ul>
+        {% if (shop.employees | length ) %}
         {% for employee in shop.employees %}
         <li><a href="/employees/{{employee.id}}"> {{employee.first_name}} {{employee.last_name}}</a>, {{employee.email}}, {{employee.favorite_donut}}</li>
         {% endfor %}
+        {% else %}
+        <li>No employees!</li>
+        {% endif %}
       </ul>
     </div>
   </div>

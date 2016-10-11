@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getAll, getOne, getOneShop, justOneShop  } = require('../queries/queries');
-const { newDonut, editDonut } = require('../queries/posts');
+const { getAll, getOne, getOneShop } = require('../queries/queries');
+const { newDonut, editDonut, deleteDonut } = require('../queries/posts');
 
 router.get('/', function (req, res, next) {
   getAll('donuts')
@@ -14,7 +14,7 @@ router.get('/new', function (req, res, next) {
 
 router.get('/:id', function (req, res, next) {
   const donutID = parseInt(req.params.id);
-  Promise.all([getOne('donuts', donutID), justOneShop(donutID)])
+  Promise.all([getOne('donuts', donutID), getOneShop(donutID)])
   .then(results => res.render('donuts/donut', {donut: results[0][0], shops: results[1]}));
 });
 
@@ -28,7 +28,7 @@ router.post('/new', function (req, res, next) {
   newDonut(req.body)
   .then(result => {
     getAll('donuts')
-    .then(donuts => res.render('donuts/donuts', {donuts, message: `${result[0].name} has been added!`}));
+    .then(donuts => res.render('donuts/donuts', {donuts, message: `${result[0].name} has been added.`}));
   });
 });
 
@@ -36,7 +36,15 @@ router.post('/:id/edit', function (req, res, next) {
   editDonut(req.body)
   .then(result => {
     getAll('donuts')
-    .then(donuts => res.render('donuts/donuts', {donuts, message: `${result[0].name} has been updated!`}));
+    .then(donuts => res.render('donuts/donuts', {donuts, message: `${result[0].name} has been updated.`}));
+  });
+});
+
+router.post('/:id/delete', function (req, res, next) {
+  deleteDonut(parseInt(req.params.id))
+  .then(result => {
+    getAll('donuts')
+    .then(donuts => res.render('donuts/donuts', {donuts, message: `${result[0].name} has been deleted.`}));
   });
 });
 

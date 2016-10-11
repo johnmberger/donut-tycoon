@@ -15,7 +15,12 @@
       <br>
       <ul>
         {% for donut in donuts %}
-        <li><a href="/donuts/{{donut.id}}">{{donut.name}}</a>,  {{donut.topping}}, ${{donut.price}}.00 || <a href="/donuts/{{donut.id}}/edit">Edit</a> || <a href="/donuts/{{donut.id}}/delete">Delete</a></li>
+        <li>
+          <a href="/donuts/{{donut.id}}">{{donut.name}}</a>,  {{donut.topping}}, ${{donut.price}}.00 || <a href="/donuts/{{donut.id}}/edit">Edit</a> ||
+          <form action="/donuts/{{donut.id}}/delete" method="post">
+            <input type="submit" value="Delete Donut">
+          </form>
+        </li>
         {% endfor %}
       </ul>
     </div>

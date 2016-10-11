@@ -6,17 +6,24 @@
     <h1>New Shop</h1>
     <div class="col-md-12">
       <form method="post">
-        <label for="first_name">Name</label>
-        <input type="text" name="name" id="name" placeholder="Name" class="form-control">
-        <label for="last_name">City</label>
-        <input type="text" name="city" id="city" placeholder="City" class="form-control">
-        <label for="favorite_donut">Donuts (can select multiple)</label>
-        <select class="form-control" name="donut_id" multiple size="{{donuts | length}}">
-          {% for donut in donuts %}
-          <option value="{{donut.id}}">{{donut.name}}</option>
-          {% endfor %}
-        </select>
-        <input type="submit" value="Create Shop" class="btn btn-success">
+        <div class="col-md-6">
+          <label for="first_name">Name</label>
+          <input type="text" name="name" id="name" placeholder="Name" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label for="last_name">City</label>
+          <input type="text" name="city" id="city" placeholder="City" class="form-control" required>
+        </div>
+        <div class="col-md-12">
+          <label for="donut_id">Donuts (can select multiple)</label>
+          <select class="form-control" name="donut_id" id="donut_id" multiple size="{{donuts | length}}" required>
+            {% for donut in donuts %}
+            <option value="{{donut.id}}">{{donut.name}}</option>
+            {% endfor %}
+          </select>
+          <br>
+          <input type="submit" value="Create Shop" class="btn btn-success">
+        </div>
       </form>
     </div>
   </div>
